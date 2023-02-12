@@ -1,7 +1,0 @@
-Projeto de extensão do Campus Cuiabá Octayde levou iniciação tecnológica para mais de 450 estudantes de 11 escolas
-
-O projeto de extensão do Campus Cuiabá Cel. octayde Jorge da Silva, Iniciação Tecnológica 4.0, beneficiou mais de 450 estudantes do 8º e 9º de 11 escolas da rede estadual de ensino, sendo 7 escolas  de Cuiabá e 4 de Várzea Grande.
-
-Com o objetivo de oferecer capacitação tecnologica, desenvolvimento humano e integração social, o projeto começou em maio e foi concluído com sucesso em dezembro. Em todas as escolas foram realizadas, aos sábados, oficinas de programação utilizando o microcontrolador Arduino tendo como tema norteador a robótica e a internet das coisas.
-
-O Projeto foi coordenado pelo professor Ronan Martins e contou com a participação de 26 bolsistas e dois voluntários, organizados em funções como, instrutores (graduandos em Engenharia), monitores (Ensino Médio e Graduandos em Engenharia), e professores extensionistas.

@@ -1,5 +1,6 @@
 <?php
 require 'vendor/autoload.php';
+shell_exec("python instagram.py");
 $hoje  = date('Ymd');
 $data_start = date('Ymd', strtotime('-5 days', strtotime($hoje)));
 
