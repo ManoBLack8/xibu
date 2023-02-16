@@ -34,16 +34,8 @@
 </html>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
-  setTimeout(setInterval(function(){ atualizarPosts() }, 10000), 10000)
-  
-  
+  setInterval(function(){ atualizarPosts() }, 10000)
 
-  function inicio() {
-    var body = document.getElementById("body")
-    body.style.display= "flex";
-    var logo = document.getElementById("logo")
-    logo.style.display= "none";
-  }
   
   
   $.ajax({
@@ -58,6 +50,19 @@
     console.error("Error: " + error);
   }
 });
+
+setInterval($.ajax({
+  type: "GET",
+  url: "pip.php",
+  dataType: "text",
+  success: function(response) {
+    console.log(response);
+  },
+  error: function(xhr, status, error) {
+    console.error("Error: " + error);
+  }
+})
+, 1)
 
 
 function atualizarPosts(){
