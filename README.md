@@ -61,6 +61,4 @@
 	<li>Abra um Pull Request neste repositório e descreva suas alterações.</li>
 </ol>
 
-<h2>Licença</h2>
 
-<p>Este projeto está licenciado sob a licença MIT - veja o arquivo <code>LICENSE</code> para mais detalhes.</p>
