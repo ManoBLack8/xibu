@@ -2,6 +2,7 @@ from git import Repo
 import git
 import os
 
+
 #Função responsável por clonar o repositório remoto do GitHub
 def git_clone():
     path = 'github'

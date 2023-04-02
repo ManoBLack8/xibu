@@ -16,8 +16,8 @@
   <title>Document</title>
 </head> 
 <body>
-  <img id="logo" src="logo.svg" alt="" style="z-index: 999; display:flex">
-  <div id="body" style="display: none;max-width:100%;height: 100%;align-items: center;justify-content: space-around;flex-direction: column;align-content: stretch;">
+  <!-- <img id="logo" src="logo.svg" alt="" style="z-index: 999; display:flex"> -->
+  <div id="body" style="max-width:100%;height: 100%;align-items: center;justify-content: space-around;flex-direction: column;align-content: stretch;">
   <!-- DIV das telas -->
     <div class="telas" style="width: 100%;height: 95%;display: flex;flex-direction: row;">
       <img src="" style="object-fit: contain;width:50%;height: 95%;" id="imagem" alt="">
@@ -32,24 +32,17 @@
   </div>
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
+   atualizarPosts()
   setInterval(function(){ atualizarPosts() }, 10000)
 
   
   
-  $.ajax({
-  type: "GET",
-  url: "noticias.php",
-  dataType: "json",
-  success: function(response) {
-    console.log(response);
+  fetch('noticias.php')
+  .then(response => response.json())
+  .then(data => {
     document.getElementById("noticia").innerText = response;
-  },
-  error: function(xhr, status, error) {
-    console.error("Error: " + error);
-  }
-});
+  })
 
 setInterval($.ajax({
   type: "GET",
@@ -66,39 +59,34 @@ setInterval($.ajax({
 
 
 function atualizarPosts(){
-  $.ajax({
-  type: "GET",
-  url: "posts.php",
-  dataType: "json",
-  success: function(response) {
-      var body = document.getElementById("body")
-    body.style.display= "flex";
-    var logo = document.getElementById("logo")
-    logo.style.display= "none";  
-    
-    var img = image = document.getElementById("imagem");
-        qtd = response.length
-        console.log(qtd)
-      
-        i = Math.floor(Math.random() * qtd);
-        img.src = response[i];
-     
+  fetch('posts.php')
+  .then(response => response.json())
+  .then(data => {
+    // fazer algo com os dados JSON recebidos
+var img = document.getElementById("imagem");
+    qtd = data.length
+    i = Math.floor(Math.random() * qtd);
+    img.src = data[i];
+    //console.log(data);
+  })
+  .catch(error => {
+    console.error('Erro ao obter dados JSON:', error);
+  });
 
+  fetch('github.php')
+  .then(response => response.json())
+  .then(data => {
+    // fazer algo com os dados JSON recebidos
 
     var img2 = document.getElementById("imagem2");
-        i2 = Math.floor(Math.random() * qtd);
-        if (i2 == i) {
-          i2 = Math.floor(Math.random() * qtd);
-        }
-        img2.src = response[i2];
-        console.log(response);
   
-  },
-  //MENSSAGEM DE ERRO DA REQUISIÇÃO
-  error: function(xhr, status, error) {
-    console.error("Error: " + error);
-  }
-})
+    i2 = Math.floor(Math.random() * qtd);
+    img2.src = data[i2];
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Erro ao obter dados JSON:', error);
+  });
 
   
 }
