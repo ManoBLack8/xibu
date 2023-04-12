@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 require 'vendor/autoload.php';
 $hoje  = date('Ymd');
 $data_start = date('Ymd', strtotime('-5 days', strtotime($hoje)));

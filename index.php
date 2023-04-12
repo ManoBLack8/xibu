@@ -33,33 +33,22 @@
 </body>
 </html>
 <script>
-   atualizarPosts()
+  atualizarPosts()
   setInterval(function(){ atualizarPosts() }, 10000)
 
   
   
-  fetch('noticias.php')
+  fetch('http://localhost:8081/noticias.php')
   .then(response => response.json())
   .then(data => {
+    consoe.log(data);
     document.getElementById("noticia").innerText = response;
   })
 
-setInterval($.ajax({
-  type: "GET",
-  url: "pip.php",
-  dataType: "text",
-  success: function(response) {
-    console.log(response);
-  },
-  error: function(xhr, status, error) {
-    console.error("Error: " + error);
-  }
-})
-, 1)
 
 
 function atualizarPosts(){
-  fetch('posts.php')
+  fetch('http://localhost:8081/posts.php')
   .then(response => response.json())
   .then(data => {
     // fazer algo com os dados JSON recebidos
@@ -73,7 +62,7 @@ var img = document.getElementById("imagem");
     console.error('Erro ao obter dados JSON:', error);
   });
 
-  fetch('github.php')
+  fetch('http://localhost:8081/github.php')
   .then(response => response.json())
   .then(data => {
     // fazer algo com os dados JSON recebidos

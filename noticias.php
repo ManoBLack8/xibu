@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 $lista_noticias = [];
 
 // URL da página de notícias do IFMT a ser requisitada
