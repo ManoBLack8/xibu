@@ -1,83 +1,129 @@
 <!DOCTYPE html>
-<html lang="pt-br" style="
-    width: 100%;
-    HEIGHT: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    width: 100%;
-">
+<html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-</head> 
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .app-container {
+      width: 100%;
+      height: 100%;
+      /* display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column; */
+    }
+
+    .telas {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tela {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .noticias {
+      width: 100%;
+      padding: 16px;
+      background-color: #646464;
+    }
+
+    #noticia {
+      font-size: 24px;
+      color: white;
+    }
+  </style>
+</head>
+
 <body>
   <!-- <img id="logo" src="logo.svg" alt="" style="z-index: 999; display:flex"> -->
-  <div id="body" style="max-width:100%;height: 100%;align-items: center;justify-content: space-around;flex-direction: column;align-content: stretch;">
-  <!-- DIV das telas -->
-    <div class="telas" style="width: 100%;height: 95%;display: flex;flex-direction: row;">
-      <img src="" style="object-fit: contain;width:50%;height: 95%;" id="imagem" alt="">
-      <img src="" style="object-fit: contain;width:50%;height: 95%;" id="imagem2" alt="">  
+  <div class="app-container">
+    <!-- DIV das telas -->
+    <div class="telas">
+      <img class="tela" src="" id="imagem" alt="">
+      <img class="tela" src="" id="imagem2" alt="">
     </div>
-  <!-- DIV das noticias -->
-    <div style="background-color:#646464;display: flex;align-items: flex-end;">
-      <marquee> 
-        <h5 style="font-size: 24px; color:#ffff; margin:0px;" id="noticia"></h5>
+    <!-- DIV das noticias -->
+    <div class="noticias">
+      <marquee behavior="" direction="">
+        <p id="noticia"></p>
       </marquee>
     </div>
   </div>
+  <script>
+    i = 0;
+    i2 = 0;
+    atualizarPosts()
+    setInterval(atualizarPosts, 10000)
+
+    fetch('http://localhost:8081/noticias.php')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("noticia").innerText = data;
+      })
+
+    function atualizarPosts() {
+      fetch('http://localhost:8081/posts.php')
+        .then(response => response.json())
+        .then(data => {
+          // fazer algo com os dados JSON recebidos
+          var img = document.getElementById("imagem");
+          qtd = data.length
+          if (i >= (qtd - 1)) {
+            i = 0
+          } else {
+            i++
+          }
+          img.src = "http://localhost:8081/" + data[i];
+          //console.log(data);
+        })
+        .catch(error => {
+          console.error('Erro ao obter dados JSON:', error);
+        });
+
+      fetch('http://localhost:8081/github.php')
+        .then(response => response.json())
+        .then(data => {
+          // fazer algo com os dados JSON recebidos
+
+          var img2 = document.getElementById("imagem2");
+          qtd = data.length
+          if (i2 >= (qtd - 1)) {
+            i2 = 0
+          } else {
+            i2++
+          }
+
+
+
+          img2.src = "http://localhost:8081/" + data[i2];
+          console.log(img2.src)
+
+        })
+        .catch(error => {
+          console.error('Erro ao obter dados JSON:', error);
+        });
+    }
+
+  </script>
 </body>
+
 </html>
-<script>
-  atualizarPosts()
-  setInterval(function(){ atualizarPosts() }, 10000)
-
-  
-  
-  fetch('http://localhost:8081/noticias.php')
-  .then(response => response.json())
-  .then(data => {
-    consoe.log(data);
-    document.getElementById("noticia").innerText = response;
-  })
-
-
-
-function atualizarPosts(){
-  fetch('http://localhost:8081/posts.php')
-  .then(response => response.json())
-  .then(data => {
-    // fazer algo com os dados JSON recebidos
-var img = document.getElementById("imagem");
-    qtd = data.length
-    i = Math.floor(Math.random() * qtd);
-    img.src = data[i];
-    //console.log(data);
-  })
-  .catch(error => {
-    console.error('Erro ao obter dados JSON:', error);
-  });
-
-  fetch('http://localhost:8081/github.php')
-  .then(response => response.json())
-  .then(data => {
-    // fazer algo com os dados JSON recebidos
-
-    var img2 = document.getElementById("imagem2");
-  
-    i2 = Math.floor(Math.random() * qtd);
-    img2.src = data[i2];
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Erro ao obter dados JSON:', error);
-  });
-
-  
-}
-
-</script>
