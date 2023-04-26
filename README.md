@@ -62,3 +62,7 @@
 </ol>
 
 
+<h2>Comando para trazer imagens do github e do instagram:</h2>
+<code> python instagram.py </codee>
+
+
