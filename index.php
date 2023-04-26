@@ -124,6 +124,23 @@
     }
 
   </script>
+  <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
+                                        <script type="text/javascript">
+                                        MRP.insert({
+                                        'url':'https://sv13.hdradios.net:6990/stream',
+                                        'codec':'',
+                                        'volume':100,
+                                        'autoplay':true,
+                                        'forceHTML5':true,
+                                        'jsevents':false,
+                                        'buffering':0,
+                                        'title':'Web Radio',
+                                        'wmode':'transparent',
+                                        'skin':'cassette',
+                                        'width':0,
+                                        'height':0
+                                        });
+                                        </script>
 </body>
 
 </html>
